@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>東北賞楓之旅 仙台・山形・會津</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Huninn&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFCF6; --ink:#3E3A39; --coral:#F2A497; --yama:#F6D27A; --mizu:#A8D3E6; --take:#B9DAA5;
+  --soft:#F4EEE3; --muted:#7A7472;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Huninn","jf open 粉圓","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+.box{border:3px solid var(--ink);border-radius:22px;background:var(--paper)}
+h2.sec{font-size:24px;margin:0 0 14px;display:flex;align-items:center;gap:10px;font-weight:400}
+h2.sec .dot{width:16px;height:16px;border:3px solid var(--ink);border-radius:50%}
+section.block{padding:26px 0 8px}
+a:focus-visible,button:focus-visible,label:focus-within{outline:3px solid var(--ink);outline-offset:3px;border-radius:12px}
+
+/* top menu */
+.topnav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:3px solid var(--ink)}
+.topnav .row{max-width:560px;margin:0 auto;display:flex;gap:6px;padding:9px 12px;overflow-x:auto;scrollbar-width:none}
+.topnav .row::-webkit-scrollbar{display:none}
+.topnav a{flex:1 0 auto;text-align:center;text-decoration:none;color:var(--ink);border:2.5px solid var(--ink);border-radius:999px;padding:4px 12px;font-size:15px;background:var(--paper)}
+.topnav a.on{background:var(--yama)}
+
+/* hero */
+.hero{padding-top:18px}
+.hero .art{overflow:hidden;background:var(--mizu)}
+.hero .art svg{display:block;width:100%;height:auto}
+.hero h1{font-weight:400;font-size:clamp(30px,9vw,40px);line-height:1.25;margin:18px 0 4px;text-align:center}
+.hero .sub{text-align:center;color:var(--muted);margin:0 0 16px}
+.count{display:flex;align-items:center;justify-content:center;gap:12px;padding:14px;background:var(--coral)}
+.count .n{font-size:46px;line-height:1;background:var(--paper);border:3px solid var(--ink);border-radius:16px;padding:6px 14px;min-width:90px;text-align:center}
+.count .t{font-size:17px;line-height:1.4}
+
+/* flights */
+.flights{display:grid;gap:12px}
+.ticket{display:grid;grid-template-columns:1fr auto;overflow:hidden}
+.ticket .main{padding:14px 16px}
+.ticket .stub{border-left:3px dashed var(--ink);padding:14px 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:86px;text-align:center}
+.ticket.go .stub{background:var(--mizu)} .ticket.back .stub{background:var(--take)}
+.ticket .kind{display:inline-block;border:2.5px solid var(--ink);border-radius:999px;padding:0 10px;font-size:14px;margin-bottom:6px}
+.ticket.go .kind{background:var(--mizu)} .ticket.back .kind{background:var(--take)}
+.ticket .route{font-size:22px;display:flex;align-items:center;gap:8px}
+.ticket .route svg{width:26px;height:26px}
+.ticket .fill{color:var(--muted);font-size:14px}
+.ticket .times{display:flex;justify-content:space-between;gap:10px;margin:6px 0 4px}
+.ticket .times b{display:block;font-size:22px;font-weight:400;line-height:1.2}
+.ticket .times span{font-size:12px;color:var(--muted)}
+.ticket .times div:last-child{text-align:right}
+.ticket .stub b{font-size:24px;font-weight:400;line-height:1.1}
+.ticket .stub small{font-size:13px}
+
+/* days */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 12px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:0 0 auto;font:inherit;color:var(--ink);background:var(--paper);border:3px solid var(--ink);border-radius:18px;padding:6px 10px;min-width:62px;cursor:pointer;line-height:1.25}
+.tabs button b{display:block;font-size:20px;font-weight:400}
+.tabs button small{font-size:12px}
+.tabs button[aria-selected="true"]{background:var(--coral)}
+.panel{padding:16px}
+.panel.bounce{animation:bounce .55s cubic-bezier(.3,1.6,.5,1)}
+@keyframes bounce{0%{transform:translateY(10px) scale(.97);opacity:.3}100%{transform:none;opacity:1}}
+.phead{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.phead .ico{width:64px;height:64px;flex:0 0 64px;border:3px solid var(--ink);border-radius:18px;background:var(--yama);display:grid;place-items:center}
+.phead .ico svg{width:46px;height:46px}
+.phead h3{margin:0;font-size:24px;font-weight:400;line-height:1.25}
+.phead .d{color:var(--muted);font-size:14px}
+.stayline{font-size:14px;background:var(--soft);border-radius:12px;padding:6px 12px;margin-bottom:14px;display:inline-block}
+.tl{list-style:none;margin:0;padding:0 0 0 22px;position:relative}
+.tl::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;border-left:3px dashed var(--ink)}
+.tl li{position:relative;padding:0 0 14px}
+.tl li::before{content:"";position:absolute;left:-21px;top:12px;width:16px;height:16px;border:3px solid var(--ink);border-radius:50%;background:var(--take)}
+.tl li.food::before{background:var(--yama)}
+.stop{border:3px solid var(--ink);border-radius:16px;padding:10px 12px;display:flex;align-items:center;gap:10px;background:var(--paper)}
+.stop .nm{flex:1;min-width:0}
+.stop .nm b{display:block;font-size:19px;font-weight:400;line-height:1.35}
+.tag{display:inline-block;font-size:13px;border:2px solid var(--ink);border-radius:999px;padding:0 8px;margin:4px 4px 0 0;line-height:1.5}
+.tag.am{background:var(--mizu)} .tag.pm{background:var(--coral)} .tag.ev{background:#CFC6E6}
+.tag.spot{background:var(--take)} .tag.food{background:var(--yama)}
+.tag.note{background:var(--paper)}
+a.map{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;text-decoration:none;color:var(--ink);background:var(--mizu);border:3px solid var(--ink);border-radius:14px;padding:6px 10px;font-size:15px;min-height:44px}
+a.map svg{width:18px;height:18px}
+a.map:active,a.btn:active{transform:translateY(2px)}
+a.btn{display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;color:var(--ink);background:var(--yama);border:3px solid var(--ink);border-radius:16px;padding:10px;min-height:48px;margin-top:4px}
+a.btn svg{width:20px;height:20px}
+#alldays .panel{margin-bottom:14px}
+html.js #alldays{display:none}
+html:not(.js) #tabs,html:not(.js) #panel,html:not(.js) .add,html:not(.js) .todo .del{display:none}
+.empty{border:3px dashed var(--ink);border-radius:16px;padding:16px;text-align:center;color:var(--muted)}
+
+/* todo */
+.todo{padding:8px 14px}
+.todo ul{list-style:none;margin:0;padding:0}
+.todo li{display:flex;align-items:center;gap:10px;border-bottom:2px dashed #D9D2C6;padding:4px 0}
+.todo li:last-child{border-bottom:0}
+.todo label{flex:1;display:flex;align-items:center;gap:12px;padding:8px 0;cursor:pointer;min-height:44px}
+.todo input{position:absolute;opacity:0;width:1px;height:1px}
+.todo .ck{width:26px;height:26px;flex:0 0 26px;border:3px solid var(--ink);border-radius:9px;display:grid;place-items:center;background:var(--paper)}
+.todo .ck svg{width:16px;height:16px;opacity:0}
+.todo input:checked + .ck{background:var(--take)}
+.todo input:checked + .ck svg{opacity:1}
+.todo input:checked ~ span{text-decoration:line-through;color:var(--muted)}
+.todo .del{font:inherit;background:none;border:0;color:var(--muted);font-size:20px;cursor:pointer;width:36px;height:36px}
+.add{display:flex;gap:8px;padding:10px 0 6px}
+.add input{flex:1;min-width:0;font:inherit;color:var(--ink);background:var(--paper);border:3px solid var(--ink);border-radius:14px;padding:8px 12px}
+.add button{font:inherit;color:var(--ink);background:var(--coral);border:3px solid var(--ink);border-radius:14px;padding:0 16px;cursor:pointer}
+.hint{font-size:13px;color:var(--muted);margin:6px 2px 0}
+
+/* stay */
+.stays{display:grid;gap:12px}
+.stayc{display:flex;align-items:center;gap:12px;padding:12px 14px}
+.stayc .nights{border:3px solid var(--ink);border-radius:14px;padding:4px 10px;text-align:center;line-height:1.2;flex:0 0 auto}
+.stayc .nights b{display:block;font-size:24px;font-weight:400}
+.stayc .nights small{font-size:12px}
+.stayc .info{flex:1;min-width:0}
+.stayc .info b{font-size:20px;font-weight:400;display:block}
+.stayc .info span{font-size:14px;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 0 40px}
+
+/* gentle motion */
+.float{animation:float 4s ease-in-out infinite}
+.sway{transform-box:fill-box;transform-origin:50% 0;animation:sway 3.2s ease-in-out infinite}
+.drift{animation:drift 18s linear infinite}
+.train{animation:train 9s ease-in-out infinite}
+.steam{animation:steam 2.8s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes sway{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+@keyframes drift{from{transform:translateX(-80px)}to{transform:translateX(420px)}}
+@keyframes train{0%{transform:translateX(-170px)}55%,100%{transform:translateX(400px)}}
+@keyframes steam{0%,100%{transform:translateY(0) scaleY(1);opacity:.9}50%{transform:translateY(-3px) scaleY(1.15);opacity:.5}}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .float,.sway,.drift,.train,.steam,.panel.bounce{animation:none!important}
+  .train{transform:translateX(110px)}
+}
+</style>
+</head>
+<body>
+<nav class="topnav" aria-label="主選單"><div class="row">
+  <a href="#home" data-s="home">首頁</a><a href="#flight" data-s="flight">航班</a><a href="#plan" data-s="plan">行程</a><a href="#todo" data-s="todo">待辦</a><a href="#stay" data-s="stay">住宿</a>
+</div></nav>
+
+<main class="wrap">
+<section class="hero" id="home">
+  <div class="art box">
+  <svg viewBox="0 0 360 230" role="img" aria-label="紅葉山谷與跨越溪谷的只見線列車">
+    <rect width="360" height="230" fill="#A8D3E6"></rect>
+    <circle cx="300" cy="46" r="22" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"></circle>
+    <g class="drift"><path d="M10 40h44a12 12 0 0 0-22-8 10 10 0 0 0-22 8z" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"></path></g>
+    <g class="drift" style="animation-delay:-9s"><path d="M10 70h36a10 10 0 0 0-18-7 8 8 0 0 0-18 7z" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"></path></g>
+    <path d="M-5 150 L60 72 L110 120 L170 52 L240 132 L300 86 L370 150 Z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"></path>
+    <path d="M150 76 L170 52 L190 76 L180 72 L170 80 L160 72 Z" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"></path>
+    <path d="M-5 160 Q60 120 120 150 T250 140 T370 150 V230 H-5Z" fill="#F2A497" stroke="#3E3A39" stroke-width="3"></path>
+    <!-- bridge -->
+    <rect x="-5" y="150" width="370" height="8" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"></rect>
+    <path d="M30 158 Q90 120 150 158 M150 158 Q210 120 270 158 M270 158 Q320 128 365 158" fill="none" stroke="#3E3A39" stroke-width="3"></path>
+    <path d="M60 158v-14M90 158v-20M120 158v-14M180 158v-14M210 158v-20M240 158v-14M300 158v-16M330 158v-16" stroke="#3E3A39" stroke-width="3"></path>
+    <!-- river -->
+    <path d="M-5 200 Q90 186 180 200 T365 198 V230 H-5Z" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3"></path>
+    <path d="M40 212h30M150 216h40M260 210h34" stroke="#FFFCF6" stroke-width="3" stroke-linecap="round"></path>
+    <!-- train -->
+    <g class="train">
+      <rect x="0" y="126" width="62" height="24" rx="8" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"></rect>
+      <rect x="0" y="140" width="62" height="5" fill="#A8D3E6"></rect>
+      <rect x="8" y="131" width="12" height="9" rx="2" fill="#A8D3E6" stroke="#3E3A39" stroke-width="2.5"></rect>
+      <rect x="25" y="131" width="12" height="9" rx="2" fill="#A8D3E6" stroke="#3E3A39" stroke-width="2.5"></rect>
+      <rect x="66" y="126" width="62" height="24" rx="8" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"></rect>
+      <rect x="66" y="140" width="62" height="5" fill="#A8D3E6"></rect>
+      <rect x="74" y="131" width="12" height="9" rx="2" fill="#A8D3E6" stroke="#3E3A39" stroke-width="2.5"></rect>
+      <rect x="91" y="131" width="12" height="9" rx="2" fill="#A8D3E6" stroke="#3E3A39" stroke-width="2.5"></rect>
+      <rect x="108" y="131" width="12" height="9" rx="2" fill="#A8D3E6" stroke="#3E3A39" stroke-width="2.5"></rect>
+    </g>
+    <!-- maple trees -->
+    <g><circle cx="30" cy="176" r="16" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"></circle><path d="M30 190v12" stroke="#3E3A39" stroke-width="3"></path></g>
+    <g><circle cx="335" cy="174" r="18" fill="#F2A497" stroke="#3E3A39" stroke-width="3"></circle><circle cx="314" cy="182" r="12" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"></circle></g>
+    <!-- falling leaves -->
+    <g class="float"><path class="sway" d="M120 30 l4 8 8-3-3 8 7 4-8 3 1 8-7-5-5 6-1-8-8-1 6-6-4-7 8 1z" fill="#F2A497" stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round"></path></g>
+    <g class="float" style="animation-delay:-2s"><path class="sway" style="animation-delay:-1.5s" d="M230 40 l3 6 6-2-2 6 5 3-6 2 1 6-5-4-4 5-1-6-6-1 5-4-3-5 6 1z" fill="#F6D27A" stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round"></path></g>
+  </svg>
+  </div>
+  <h1>東北賞楓之旅<br>仙台・山形・會津</h1>
+  <p class="sub">2026.11.08（日）– 11.15（日）｜8 天 7 夜</p>
+  <div class="count box" id="countbox"><div class="n" id="cd">✈</div><div class="t" id="cdt">11/08（日）<br>仙台見！</div></div>
+</section>
+
+<section class="block" id="flight">
+  <h2 class="sec"><span class="dot" style="background:var(--mizu)"></span>航班</h2>
+  <div class="flights">
+    <div class="ticket go box"><div class="main">
+      <span class="kind">去程</span>
+      <div class="route">TPE <svg viewBox="0 0 24 24" fill="none" stroke="#3E3A39" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16l20-5-20-5 4 5-4 5zM6 11h8"></path></svg> SDJ</div>
+      <div class="times"><div><b>14:35</b><span>桃園機場 第一航廈</span></div><div><b>18:45</b><span>仙台機場</span></div></div>
+      <div class="fill">台灣虎航 IT254</div>
+    </div><div class="stub"><b>11/08</b><small>週日</small></div></div>
+    <div class="ticket back box"><div class="main">
+      <span class="kind">回程</span>
+      <div class="route">SDJ <svg viewBox="0 0 24 24" fill="none" stroke="#3E3A39" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16l20-5-20-5 4 5-4 5zM6 11h8"></path></svg> TPE</div>
+      <div class="times"><div><b>19:40</b><span>仙台機場</span></div><div><b>23:00</b><span>桃園機場 第一航廈</span></div></div>
+      <div class="fill">台灣虎航 IT255</div>
+    </div><div class="stub"><b>11/15</b><small>週日</small></div></div>
+  </div>
+</section>
+
+<section class="block" id="plan">
+  <h2 class="sec"><span class="dot" style="background:var(--coral)"></span>每日行程</h2>
+  <div class="tabs" role="tablist" id="tabs" aria-label="選擇日期"><button role="tab" aria-selected="true"><small>週日</small><b>11/8</b></button><button role="tab" aria-selected="false"><small>週一</small><b>11/9</b></button><button role="tab" aria-selected="false"><small>週二</small><b>11/10</b></button><button role="tab" aria-selected="false"><small>週三</small><b>11/11</b></button><button role="tab" aria-selected="false"><small>週四</small><b>11/12</b></button><button role="tab" aria-selected="false"><small>週五</small><b>11/13</b></button><button role="tab" aria-selected="false"><small>週六</small><b>11/14</b></button><button role="tab" aria-selected="false"><small>週日</small><b>11/15</b></button></div>
+  <div class="panel box" id="panel" role="tabpanel"><div class="phead"><div class="ico"><svg viewBox="0 0 48 48"><rect x="8" y="10" width="32" height="26" rx="9" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></rect><rect x="13" y="15" width="22" height="9" rx="3" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></rect><circle cx="16" cy="30" r="2" fill="#3E3A39"></circle><circle cx="32" cy="30" r="2" fill="#3E3A39"></circle><path d="M14 36l-4 6M34 36l4 6" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path></svg></div><div><div class="d">11 月 8 日 週日｜第 1 天</div><h3>抵達仙台</h3></div></div><div class="stayline">今晚住：仙台</div><div class="empty">搭台灣虎航 IT254，18:45 抵達仙台機場，這天的景點尚未安排。</div></div>
+  <div id="alldays"><div class="panel box"><div class="phead"><div class="ico"><svg viewBox="0 0 48 48"><rect x="8" y="10" width="32" height="26" rx="9" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></rect><rect x="13" y="15" width="22" height="9" rx="3" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></rect><circle cx="16" cy="30" r="2" fill="#3E3A39"></circle><circle cx="32" cy="30" r="2" fill="#3E3A39"></circle><path d="M14 36l-4 6M34 36l4 6" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path></svg></div><div><div class="d">11 月 8 日 週日｜第 1 天</div><h3>抵達仙台</h3></div></div><div class="stayline">今晚住：仙台</div><div class="empty">搭台灣虎航 IT254，18:45 抵達仙台機場，這天的景點尚未安排。</div></div><div class="panel box"><div class="phead"><div class="ico"><svg viewBox="0 0 48 48"><path d="M8 32q16 10 32 0" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path><ellipse cx="24" cy="32" rx="16" ry="5" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></ellipse><g class="steam"><path d="M16 24q-3-4 0-8t0-8" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path></g><g class="steam" style="animation-delay:-.9s"><path d="M24 24q-3-4 0-8t0-8" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path></g><g class="steam" style="animation-delay:-1.8s"><path d="M32 24q-3-4 0-8t0-8" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path></g></svg></div><div><div class="d">11 月 9 日 週一｜第 2 天</div><h3>鳴子峡・銀山温泉</h3></div></div><div class="stayline">今晚住：山形</div><ol class="tl"><li class=""><div class="stop"><div class="nm"><b>鳴子峡</b><span class="tag am">早上</span><span class="tag spot">景點</span></div><a class="map" href="https://maps.app.goo.gl/xd51YXL61MWjHCEd8" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 鳴子峡"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div></li><li class=""><div class="stop"><div class="nm"><b>銀山温泉</b><span class="tag am">早上</span><span class="tag spot">景點</span></div><a class="map" href="https://maps.app.goo.gl/UQ6nHBsHvUTkKGbw8" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 銀山温泉"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div></li></ol><a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=%E9%B3%B4%E5%AD%90%E5%B3%A1&amp;destination=%E9%8A%80%E5%B1%B1%E6%B8%A9%E6%B3%89" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>在 Google 地圖看今天的路線</a></div><div class="panel box"><div class="phead"><div class="ico"><svg viewBox="0 0 48 48"><path d="M4 40l14-24 8 12 6-8 12 20z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path><path d="M13 25l5-9 5 7-3-1z" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path><g class="steam"><path d="M36 14q-2-3 0-6" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path></g></svg></div><div><div class="d">11 月 10 日 週二｜第 3 天</div><h3>蔵王温泉</h3></div></div><div class="stayline">今晚住：山形</div><ol class="tl"><li class=""><div class="stop"><div class="nm"><b>蔵王温泉</b><span class="tag am">早上</span><span class="tag spot">景點</span></div><a class="map" href="https://maps.app.goo.gl/BQdU1j9GVPtT6wVL6" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 蔵王温泉"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div></li></ol></div><div class="panel box"><div class="phead"><div class="ico"><svg viewBox="0 0 48 48"><path d="M6 18q18-10 36 0z" fill="#F2A497" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path><rect x="12" y="18" width="24" height="8" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></rect><path d="M8 28q16-6 32 0z" fill="#F2A497" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path><rect x="14" y="28" width="20" height="12" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></rect><path d="M24 30v10" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path></svg></div><div><div class="d">11 月 11 日 週三｜第 4 天</div><h3>山寺・豬苗代湖</h3></div></div><div class="stayline">今晚住：會津若松</div><ol class="tl"><li class=""><div class="stop"><div class="nm"><b>立石寺</b><span class="tag am">早上</span><span class="tag spot">景點</span><span class="tag note">山寺</span></div><a class="map" href="https://maps.app.goo.gl/eWvVZhbKXFKaSr9z9" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 立石寺"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div></li><li class=""><div class="stop"><div class="nm"><b>豬苗代湖</b><span class="tag pm">下午</span><span class="tag spot">景點</span></div><a class="map" href="https://maps.app.goo.gl/AdoWdFDsDZf9aEFN7" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 豬苗代湖"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div></li></ol><a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=%E5%B1%B1%E5%AF%BA%20%E7%AB%8B%E7%9F%B3%E5%AF%BA&amp;destination=%E7%8C%AA%E8%8B%97%E4%BB%A3%E6%B9%96" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>在 Google 地圖看今天的路線</a></div><div class="panel box"><div class="phead"><div class="ico"><svg viewBox="0 0 48 48"><path d="M6 30l10-14 8 9 6-6 12 11z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path><ellipse cx="24" cy="36" rx="19" ry="7" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></ellipse><path d="M16 36h6M28 38h6" stroke="#FFFCF6" stroke-width="3" stroke-linecap="round"></path></svg></div><div><div class="d">11 月 12 日 週四｜第 5 天</div><h3>只見線・五色沼</h3></div></div><div class="stayline">今晚住：仙台</div><ol class="tl"><li class=""><div class="stop"><div class="nm"><b>只見線</b><span class="tag am">早上</span><span class="tag spot">景點</span></div><a class="map" href="https://maps.app.goo.gl/nhrkPJjR9fSkEqLDA" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 只見線"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div></li><li class=""><div class="stop"><div class="nm"><b>吉利蛋公園</b><span class="tag am">早上</span><span class="tag spot">景點</span></div><a class="map" href="https://maps.app.goo.gl/dfu5BmpKD4gt1cVC9" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 吉利蛋公園"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div></li><li class=""><div class="stop"><div class="nm"><b>五色沼</b><span class="tag pm">下午</span><span class="tag spot">景點</span><span class="tag note">裏磐梯</span></div><a class="map" href="https://maps.app.goo.gl/e3VeqVBFocL8DdDr8" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 五色沼"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div></li></ol><a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=%E7%AC%AC%E4%B8%80%E5%8F%AA%E8%A6%8B%E5%B7%9D%E6%A9%8B%E6%A2%81%E3%83%93%E3%83%A5%E3%83%BC%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88&amp;destination=%E4%BA%94%E8%89%B2%E6%B2%BC%20%E8%A3%8F%E7%A3%90%E6%A2%AF&amp;waypoints=%E5%90%89%E5%88%A9%E8%9B%8B%E5%85%AC%E5%9C%92" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>在 Google 地圖看今天的路線</a></div><div class="panel box"><div class="phead"><div class="ico"><svg viewBox="0 0 48 48"><path d="M24 6l-6 12h12z" fill="#F6D27A" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path><path d="M8 40v-4l8-4 8 4 8-4 8 4v4" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path><path d="M14 18c4 4 16 4 20 0" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path><path d="M10 14q8 6 14 4M38 14q-8 6-14 4" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path><path d="M24 22v10" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path></svg></div><div><div class="d">11 月 13 日 週五｜第 6 天</div><h3>仙台市區散步</h3></div></div><div class="stayline">今晚住：仙台</div><ol class="tl"><li class="food"><div class="stop"><div class="nm"><b>仙台朝市</b><span class="tag am">早上</span><span class="tag food">餐廳</span></div><a class="map" href="https://maps.app.goo.gl/MFxd2chpGsCWzg8G9" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 仙台朝市"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div></li><li class=""><div class="stop"><div class="nm"><b>仙台城跡</b><span class="tag am">早上</span><span class="tag spot">景點</span></div><a class="map" href="https://maps.app.goo.gl/aZrXwrqYUmF5QaFS9" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 仙台城跡"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div></li><li class=""><div class="stop"><div class="nm"><b>瑞鳳殿</b><span class="tag am">早上</span><span class="tag spot">景點</span></div><a class="map" href="https://maps.app.goo.gl/zcQrScgHHsVQG6Wz7" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 瑞鳳殿"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div></li><li class=""><div class="stop"><div class="nm"><b>定禪寺通</b><span class="tag pm">下午</span><span class="tag spot">景點</span></div><a class="map" href="https://maps.app.goo.gl/MDyMtmq6Liuo6wyx8" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 定禪寺通"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div></li><li class=""><div class="stop"><div class="nm"><b>大崎八幡宮</b><span class="tag pm">下午</span><span class="tag spot">景點</span></div><a class="map" href="https://maps.app.goo.gl/AKFKYqziw9y5ShG57" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 大崎八幡宮"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div></li></ol><a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=%E4%BB%99%E5%8F%B0%E6%9C%9D%E5%B8%82&amp;destination=%E5%A4%A7%E5%B4%8E%E5%85%AB%E5%B9%A1%E5%AE%AE&amp;waypoints=%E4%BB%99%E5%8F%B0%E5%9F%8E%E8%B7%A1%7C%E7%91%9E%E9%B3%B3%E6%AE%BF%7C%E5%AE%9A%E7%A6%85%E5%AF%BA%E9%80%9A%20%E4%BB%99%E5%8F%B0" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>在 Google 地圖看今天的路線</a></div><div class="panel box"><div class="phead"><div class="ico"><svg viewBox="0 0 48 48"><path d="M6 32q4-14 12-14t10 14z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path><path d="M26 32q3-9 8-9t8 9z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path><path d="M18 18v-6M15 14l3-3 3 3" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path><path d="M4 36q5-3 10 0t10 0 10 0 10 0" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path></svg></div><div><div class="d">11 月 14 日 週六｜第 7 天</div><h3>松島海岸</h3></div></div><div class="stayline">今晚住：仙台</div><ol class="tl"><li class=""><div class="stop"><div class="nm"><b>松島海岸</b><span class="tag am">早上</span><span class="tag spot">景點</span></div><a class="map" href="https://maps.app.goo.gl/d3Dq3wUW3JJ5sXoF7" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 松島海岸"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div></li></ol></div><div class="panel box"><div class="phead"><div class="ico"><svg viewBox="0 0 48 48"><g class="float"><path d="M6 28l36-10-6 10-14 4-6 8-2-7z" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path><path d="M36 28L22 32" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path></g></svg></div><div><div class="d">11 月 15 日 週日｜第 8 天</div><h3>水族館・回程</h3></div></div><ol class="tl"><li class=""><div class="stop"><div class="nm"><b>仙台海洋森林水族館</b><span class="tag am">白天</span><span class="tag spot">景點</span></div><a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=%E4%BB%99%E5%8F%B0%E3%81%86%E3%81%BF%E3%81%AE%E6%9D%9C%E6%B0%B4%E6%97%8F%E9%A4%A8" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 仙台海洋森林水族館"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div></li><li class=""><div class="stop"><div class="nm"><b>仙台機場</b><span class="tag ev">晚上</span><span class="tag spot">交通</span><span class="tag note">台灣虎航 IT255・19:40 起飛</span></div><a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=%E4%BB%99%E5%8F%B0%E7%A9%BA%E6%B8%AF" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 仙台機場"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div></li></ol><a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=%E4%BB%99%E5%8F%B0%E3%81%86%E3%81%BF%E3%81%AE%E6%9D%9C%E6%B0%B4%E6%97%8F%E9%A4%A8&amp;destination=%E4%BB%99%E5%8F%B0%E7%A9%BA%E6%B8%AF" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>在 Google 地圖看今天的路線</a></div></div>
+</section>
+
+<section class="block" id="todo">
+  <h2 class="sec"><span class="dot" style="background:var(--take)"></span>待辦清單</h2>
+  <div class="todo box">
+    <ul id="todolist"><li><label><input type="checkbox" data-i="0"><span class="ck"><svg viewBox="0 0 16 16" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"></path></svg></span><span>護照（效期 6 個月以上）</span></label><button class="del" data-del="0" aria-label="刪除 護照（效期 6 個月以上）">×</button></li><li><label><input type="checkbox" data-i="1"><span class="ck"><svg viewBox="0 0 16 16" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"></path></svg></span><span>機票、住宿訂位確認</span></label><button class="del" data-del="1" aria-label="刪除 機票、住宿訂位確認">×</button></li><li><label><input type="checkbox" data-i="2"><span class="ck"><svg viewBox="0 0 16 16" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"></path></svg></span><span>日幣現金與信用卡</span></label><button class="del" data-del="2" aria-label="刪除 日幣現金與信用卡">×</button></li><li><label><input type="checkbox" data-i="3"><span class="ck"><svg viewBox="0 0 16 16" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"></path></svg></span><span>網卡 / eSIM</span></label><button class="del" data-del="3" aria-label="刪除 網卡 / eSIM">×</button></li><li><label><input type="checkbox" data-i="4"><span class="ck"><svg viewBox="0 0 16 16" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"></path></svg></span><span>旅遊平安險</span></label><button class="del" data-del="4" aria-label="刪除 旅遊平安險">×</button></li><li><label><input type="checkbox" data-i="5"><span class="ck"><svg viewBox="0 0 16 16" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"></path></svg></span><span>保暖外套、手套（11 月東北偏冷）</span></label><button class="del" data-del="5" aria-label="刪除 保暖外套、手套（11 月東北偏冷）">×</button></li><li><label><input type="checkbox" data-i="6"><span class="ck"><svg viewBox="0 0 16 16" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"></path></svg></span><span>泡溫泉用的毛巾與換洗衣物</span></label><button class="del" data-del="6" aria-label="刪除 泡溫泉用的毛巾與換洗衣物">×</button></li><li><label><input type="checkbox" data-i="7"><span class="ck"><svg viewBox="0 0 16 16" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"></path></svg></span><span>行動電源與轉接頭</span></label><button class="del" data-del="7" aria-label="刪除 行動電源與轉接頭">×</button></li></ul>
+    <div class="add"><input id="newtodo" placeholder="新增一項…" aria-label="新增待辦"><button id="addbtn">新增</button></div>
+  </div>
+  <p class="hint">勾選紀錄只存在你自己的手機上，每個人各自一份。</p>
+</section>
+
+<section class="block" id="stay">
+  <h2 class="sec"><span class="dot" style="background:var(--yama)"></span>住宿</h2>
+  <div class="stays" id="stays"><div class="stayc box"><div class="nights" style="background:var(--mizu)"><b>1</b><small>晚</small></div><div class="info"><b>仙台</b><span>11/08（日）</span></div><a class="map" href="https://maps.app.goo.gl/wZFGc9AxD88qo91n7" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 仙台"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div><div class="stayc box"><div class="nights" style="background:var(--take)"><b>2</b><small>晚</small></div><div class="info"><b>山形</b><span>11/09（一）– 11/10（二）</span></div><a class="map" href="https://maps.app.goo.gl/f4aynsoZAYYf2JLn6" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 山形"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div><div class="stayc box"><div class="nights" style="background:var(--coral)"><b>1</b><small>晚</small></div><div class="info"><b>會津若松</b><span>11/11（三）</span></div><a class="map" href="https://maps.app.goo.gl/U5U1Eog6eXPdtpdP7" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 會津若松"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div><div class="stayc box"><div class="nights" style="background:var(--mizu)"><b>3</b><small>晚</small></div><div class="info"><b>仙台</b><span>11/12（四）– 11/14（六）</span></div><a class="map" href="https://maps.app.goo.gl/xxmejVQn3566j9K47" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 仙台"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>地圖</a></div></div>
+</section>
+<footer>點「地圖」會直接開啟 Google 地圖 App</footer>
+</main>
+
+<script>
+document.documentElement.classList.add("js");
+const S='stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"';
+const ICONS={
+ train:`<svg viewBox="0 0 48 48"><rect x="8" y="10" width="32" height="26" rx="9" fill="#FFFCF6" ${S}/><rect x="13" y="15" width="22" height="9" rx="3" fill="#A8D3E6" ${S}/><circle cx="16" cy="30" r="2" fill="#3E3A39"/><circle cx="32" cy="30" r="2" fill="#3E3A39"/><path d="M14 36l-4 6M34 36l4 6" fill="none" ${S}/></svg>`,
+ onsen:`<svg viewBox="0 0 48 48"><path d="M8 32q16 10 32 0" fill="#A8D3E6" ${S}/><ellipse cx="24" cy="32" rx="16" ry="5" fill="#A8D3E6" ${S}/><g class="steam"><path d="M16 24q-3-4 0-8t0-8" fill="none" ${S}/></g><g class="steam" style="animation-delay:-.9s"><path d="M24 24q-3-4 0-8t0-8" fill="none" ${S}/></g><g class="steam" style="animation-delay:-1.8s"><path d="M32 24q-3-4 0-8t0-8" fill="none" ${S}/></g></svg>`,
+ mountain:`<svg viewBox="0 0 48 48"><path d="M4 40l14-24 8 12 6-8 12 20z" fill="#B9DAA5" ${S}/><path d="M13 25l5-9 5 7-3-1z" fill="#FFFCF6" ${S}/><g class="steam"><path d="M36 14q-2-3 0-6" fill="none" ${S}/></g></svg>`,
+ temple:`<svg viewBox="0 0 48 48"><path d="M6 18q18-10 36 0z" fill="#F2A497" ${S}/><rect x="12" y="18" width="24" height="8" fill="#FFFCF6" ${S}/><path d="M8 28q16-6 32 0z" fill="#F2A497" ${S}/><rect x="14" y="28" width="20" height="12" fill="#FFFCF6" ${S}/><path d="M24 30v10" ${S}/></svg>`,
+ lake:`<svg viewBox="0 0 48 48"><path d="M6 30l10-14 8 9 6-6 12 11z" fill="#B9DAA5" ${S}/><ellipse cx="24" cy="36" rx="19" ry="7" fill="#A8D3E6" ${S}/><path d="M16 36h6M28 38h6" stroke="#FFFCF6" stroke-width="3" stroke-linecap="round"/></svg>`,
+ castle:`<svg viewBox="0 0 48 48"><path d="M24 6l-6 12h12z" fill="#F6D27A" ${S}/><path d="M8 40v-4l8-4 8 4 8-4 8 4v4" fill="none" ${S}/><path d="M14 18c4 4 16 4 20 0" fill="none" ${S}/><path d="M10 14q8 6 14 4M38 14q-8 6-14 4" fill="none" ${S}/><path d="M24 22v10" ${S}/></svg>`,
+ sea:`<svg viewBox="0 0 48 48"><path d="M6 32q4-14 12-14t10 14z" fill="#B9DAA5" ${S}/><path d="M26 32q3-9 8-9t8 9z" fill="#B9DAA5" ${S}/><path d="M18 18v-6M15 14l3-3 3 3" fill="none" ${S}/><path d="M4 36q5-3 10 0t10 0 10 0 10 0" fill="none" ${S}/></svg>`,
+ plane:`<svg viewBox="0 0 48 48"><g class="float"><path d="M6 28l36-10-6 10-14 4-6 8-2-7z" fill="#FFFCF6" ${S}/><path d="M36 28L22 32" fill="none" ${S}/></g></svg>`
+};
+const PIN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+const days=[
+ {d:8,w:"日",title:"抵達仙台",ico:"train",stay:"仙台",slots:[],empty:"搭台灣虎航 IT254，18:45 抵達仙台機場，這天的景點尚未安排。"},
+ {d:9,w:"一",title:"鳴子峡・銀山温泉",ico:"onsen",stay:"山形",slots:[["早上",[{n:"鳴子峡",q:"鳴子峡",u:"https://maps.app.goo.gl/xd51YXL61MWjHCEd8",t:"景點"},{n:"銀山温泉",q:"銀山温泉",u:"https://maps.app.goo.gl/UQ6nHBsHvUTkKGbw8",t:"景點"}]]]},
+ {d:10,w:"二",title:"蔵王温泉",ico:"mountain",stay:"山形",slots:[["早上",[{n:"蔵王温泉",q:"蔵王温泉",u:"https://maps.app.goo.gl/BQdU1j9GVPtT6wVL6",t:"景點"}]]]},
+ {d:11,w:"三",title:"山寺・豬苗代湖",ico:"temple",stay:"會津若松",slots:[["早上",[{n:"立石寺",sub:"山寺",q:"山寺 立石寺",u:"https://maps.app.goo.gl/eWvVZhbKXFKaSr9z9",t:"景點"}]],["下午",[{n:"豬苗代湖",q:"猪苗代湖",u:"https://maps.app.goo.gl/AdoWdFDsDZf9aEFN7",t:"景點"}]]]},
+ {d:12,w:"四",title:"只見線・五色沼",ico:"lake",stay:"仙台",slots:[["早上",[{n:"只見線",q:"第一只見川橋梁ビューポイント",u:"https://maps.app.goo.gl/nhrkPJjR9fSkEqLDA",t:"景點"},{n:"吉利蛋公園",q:"吉利蛋公園",u:"https://maps.app.goo.gl/dfu5BmpKD4gt1cVC9",t:"景點"}]],["下午",[{n:"五色沼",sub:"裏磐梯",q:"五色沼 裏磐梯",u:"https://maps.app.goo.gl/e3VeqVBFocL8DdDr8",t:"景點"}]]]},
+ {d:13,w:"五",title:"仙台市區散步",ico:"castle",stay:"仙台",slots:[["早上",[{n:"仙台朝市",q:"仙台朝市",u:"https://maps.app.goo.gl/MFxd2chpGsCWzg8G9",t:"餐廳"},{n:"仙台城跡",q:"仙台城跡",u:"https://maps.app.goo.gl/aZrXwrqYUmF5QaFS9",t:"景點"},{n:"瑞鳳殿",q:"瑞鳳殿",u:"https://maps.app.goo.gl/zcQrScgHHsVQG6Wz7",t:"景點"}]],["下午",[{n:"定禪寺通",q:"定禅寺通 仙台",u:"https://maps.app.goo.gl/MDyMtmq6Liuo6wyx8",t:"景點"},{n:"大崎八幡宮",q:"大崎八幡宮",u:"https://maps.app.goo.gl/AKFKYqziw9y5ShG57",t:"景點"}]]]},
+ {d:14,w:"六",title:"松島海岸",ico:"sea",stay:"仙台",slots:[["早上",[{n:"松島海岸",q:"松島海岸",u:"https://maps.app.goo.gl/d3Dq3wUW3JJ5sXoF7",t:"景點"}]]]},
+ {d:15,w:"日",title:"水族館・回程",ico:"plane",stay:"",slots:[["白天",[{n:"仙台海洋森林水族館",q:"仙台うみの杜水族館",t:"景點"}]],["晚上",[{n:"仙台機場",sub:"台灣虎航 IT255・19:40 起飛",q:"仙台空港",t:"交通"}]]]}
+];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const mapURL=q=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);
+const dirURL=l=>{let u="https://www.google.com/maps/dir/?api=1&origin="+encodeURIComponent(l[0])+"&destination="+encodeURIComponent(l[l.length-1]);if(l.length>2)u+="&waypoints="+encodeURIComponent(l.slice(1,-1).join("|"));return u};
+const slotCls={"早上":"am","白天":"am","下午":"pm","晚上":"ev"};
+
+/* countdown */
+(function(){
+  const start=new Date(2026,10,8),end=new Date(2026,10,15),now=new Date();now.setHours(0,0,0,0);
+  const diff=Math.round((start-now)/864e5),n=document.getElementById("cd"),t=document.getElementById("cdt");
+  if(diff>0){n.textContent=diff;t.innerHTML="天後出發<br>11/08 仙台見！";}
+  else if(now<=end){n.textContent="第"+(Math.round((now-start)/864e5)+1)+"天";n.style.fontSize="30px";t.textContent="旅行中，玩得開心！";}
+  else{n.textContent="✓";t.textContent="旅程圓滿結束";}
+})();
+
+/* day tabs */
+const tabs=document.getElementById("tabs"),panel=document.getElementById("panel");
+function dayHTML(i){
+  const day=days[i];
+  const all=day.slots.flatMap(s=>s[1].map(x=>({...x,slot:s[0]})));
+  let h=`<div class="phead"><div class="ico">${ICONS[day.ico]}</div><div><div class="d">11 月 ${day.d} 日 週${day.w}｜第 ${i+1} 天</div><h3>${esc(day.title)}</h3></div></div>`;
+  if(day.stay)h+=`<div class="stayline">今晚住：${esc(day.stay)}</div>`;
+  if(!all.length)h+=`<div class="empty">${day.empty}</div>`;
+  else{
+    h+=`<ol class="tl">`+all.map(s=>`<li class="${s.t==="餐廳"?"food":""}"><div class="stop"><div class="nm"><b>${esc(s.n)}</b><span class="tag ${slotCls[s.slot]}">${s.slot}</span><span class="tag ${s.t==="餐廳"?"food":"spot"}">${s.t}</span>${s.sub?`<span class="tag note">${esc(s.sub)}</span>`:""}</div><a class="map" href="${s.u||mapURL(s.q)}" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 ${esc(s.n)}">${PIN}地圖</a></div></li>`).join("")+`</ol>`;
+    if(all.length>1)h+=`<a class="btn" href="${dirURL(all.map(s=>s.q))}" target="_blank" rel="noopener">${PIN}在 Google 地圖看今天的路線</a>`;
+  }
+  return h;
+}
+function render(i,anim){
+  [...tabs.children].forEach((b,j)=>b.setAttribute("aria-selected",j===i));
+  tabs.children[i].scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"});
+  panel.innerHTML=dayHTML(i);
+  if(anim){panel.classList.remove("bounce");void panel.offsetWidth;panel.classList.add("bounce");}
+}
+tabs.innerHTML="";
+days.forEach((d,i)=>{
+  const b=document.createElement("button");b.setAttribute("role","tab");
+  b.innerHTML=`<small>週${d.w}</small><b>11/${d.d}</b>`;
+  b.onclick=()=>render(i,true);tabs.appendChild(b);
+});
+/* during the trip open today's tab */
+(function(){const n=new Date(),i=days.findIndex(d=>n.getFullYear()===2026&&n.getMonth()===10&&n.getDate()===d.d);render(i<0?0:i,false);})();
+
+/* todo with per-viewer storage */
+const KEY="sendai-todo-v1";
+const defaults=["護照（效期 6 個月以上）","機票、住宿訂位確認","日幣現金與信用卡","網卡 / eSIM","旅遊平安險","保暖外套、手套（11 月東北偏冷）","泡溫泉用的毛巾與換洗衣物","行動電源與轉接頭"].map(t=>({t,c:false}));
+let todos;try{todos=JSON.parse(localStorage.getItem(KEY))||defaults}catch(e){todos=defaults}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(todos))}catch(e){}};
+const list=document.getElementById("todolist");
+const CK='<svg viewBox="0 0 16 16" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"/></svg>';
+function drawTodos(){
+  list.innerHTML=todos.map((x,i)=>`<li><label><input type="checkbox" data-i="${i}" ${x.c?"checked":""}><span class="ck">${CK}</span><span>${esc(x.t)}</span></label><button class="del" data-del="${i}" aria-label="刪除 ${esc(x.t)}">×</button></li>`).join("");
+}
+list.addEventListener("change",e=>{const i=e.target.dataset.i;if(i!=null){todos[i].c=e.target.checked;save();}});
+list.addEventListener("click",e=>{const i=e.target.dataset.del;if(i!=null){todos.splice(+i,1);save();drawTodos();}});
+const inp=document.getElementById("newtodo");
+const add=()=>{const v=inp.value.trim();if(!v)return;todos.push({t:v,c:false});inp.value="";save();drawTodos();};
+document.getElementById("addbtn").onclick=add;inp.addEventListener("keydown",e=>{if(e.key==="Enter")add();});
+drawTodos();
+
+/* stays */
+const stays=[
+ {city:"仙台",dates:"11/08（日）",n:1,c:"var(--mizu)",u:"https://maps.app.goo.gl/wZFGc9AxD88qo91n7"},
+ {city:"山形",dates:"11/09（一）– 11/10（二）",n:2,c:"var(--take)",u:"https://maps.app.goo.gl/f4aynsoZAYYf2JLn6"},
+ {city:"會津若松",dates:"11/11（三）",n:1,c:"var(--coral)",u:"https://maps.app.goo.gl/U5U1Eog6eXPdtpdP7"},
+ {city:"仙台",dates:"11/12（四）– 11/14（六）",n:3,c:"var(--mizu)",u:"https://maps.app.goo.gl/xxmejVQn3566j9K47"}
+];
+document.getElementById("stays").innerHTML=stays.map(s=>`<div class="stayc box"><div class="nights" style="background:${s.c}"><b>${s.n}</b><small>晚</small></div><div class="info"><b>${s.city}</b><span>${s.dates}${s.u?"":"・飯店待填"}</span></div><a class="map" href="${s.u||mapURL({"仙台":"仙台駅","山形":"山形駅","會津若松":"会津若松駅"}[s.city])}" target="_blank" rel="noopener" aria-label="在 Google 地圖開啟 ${s.city}">${PIN}地圖</a></div>`).join("");
+
+/* top menu highlight + #token links */
+const navs=[...document.querySelectorAll(".topnav a")];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)navs.forEach(a=>a.classList.toggle("on",a.dataset.s===e.target.id))}),{rootMargin:"-35% 0px -60% 0px"});
+["home","flight","plan","todo","stay"].forEach(id=>io.observe(document.getElementById(id)));
+const h=location.hash.slice(1);if(h&&document.getElementById(h))setTimeout(()=>document.getElementById(h).scrollIntoView(),60);
+</script>
+
+
+</body></html>
